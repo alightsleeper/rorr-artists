@@ -26,8 +26,12 @@ module Api
                 @artist = Artist.find(params[:artist_id])
             end
 
+            def venue
+                @venue = Venue.find(params[:venue_id])
+            end
+
             def performance_params
-                params.require(:performance).permit(:title, :description, :date, :artist_id)
+                params.require(:performance).permit(:title, :description, :date, :artist_id, :venue_id)
             end
 
         end
