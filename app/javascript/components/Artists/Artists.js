@@ -42,10 +42,13 @@ const Artists = () => {
     }, [artists.length])
 
     const grid = artists.map( item => {
+        console.log(item)
+
         return (
             <Artist 
                 key={item.attributes.name}
                 attributes={item.attributes}
+                id={item.id}
             />
         )
     })

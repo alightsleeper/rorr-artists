@@ -39,8 +39,8 @@ const Artist = (props) => {
     const [reviewInProgress, setReviewInProgress] = useState(false)
 
     useEffect( () => {
-        const slug = props.match.params.slug
-        const url = `/api/v1/artists/${slug}`
+        const artist_id = props.match.params.id
+        const url = `/api/v1/artists/${artist_id}`
   
         axios.get(url)
         .then( resp => {

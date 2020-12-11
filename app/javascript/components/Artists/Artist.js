@@ -29,7 +29,7 @@ const ArtistName = styled.div`
 const Artist = (props) => {
     return (
         <Card>
-            <Link to={`/artists/${props.attributes.slug}`}>
+            <Link to={`/artists/${props.id}`}>
                 <ArtistLogo>
                     <img src={props.attributes.image_url} alt={props.attributes.name}/>
                 </ArtistLogo>

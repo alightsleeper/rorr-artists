@@ -7,11 +7,11 @@ module Api
             end
 
             def show
-                artist = Artist.find_by(slug: params[:slug])
+                artist = Artist.find(params[:id])
                 if artist
                     render jsonapi: artist
                 else
-                    error = {detail: 'Artist \'' + params[:slug] + '\' not found'}
+                    error = {detail: 'Artist with id ' + params[:id] + ' not found'}
                     render jsonapi_errors: error, status: 404
                 end
             end
@@ -26,31 +26,31 @@ module Api
             end
 
             def update
-                artist = Artist.find_by(slug: params[:slug])
+                artist = Artist.find(params[:id])
                 if artist
                     if artist.update(artist_params)
                         render jsonapi: artist
                     else
-                        error = {detail: 'Artist \'' + params[:slug] + '\' cannot be updated'}
+                        error = {detail: 'Artist with id ' + params[:id] + ' cannot be updated'}
                         render jsonapi_errors: error, status: 422    
                     end
                 else
-                    error = {detail: 'Artist \'' + params[:slug] + '\' does not exist'}
+                    error = {detail: 'Artist with id ' + params[:id] + ' does not exist'}
                     render jsonapi_errors: error, status: 404
                 end
             end
 
             def destroy
-                artist = Artist.find_by(slug: params[:slug])
+                artist = Artist.find(params[:id])
                 if artist
                     if artist.destroy
                         head :no_content
                     else
-                        error = {detail: 'Artist \'' + params[:slug] + '\' cannot be deleted'}
+                        error = {detail: 'Artist with id ' + params[:id] + ' cannot be deleted'}
                         render jsonapi_errors: error, status: 422    
                     end
                 else
-                    error = {detail: 'Artist \'' + params[:slug] + '\' does not exist'}
+                    error = {detail: 'Artist with id ' + params[:id] + ' does not exist'}
                     render jsonapi_errors: error, status: 404
                 end
             end

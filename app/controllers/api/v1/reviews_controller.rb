@@ -7,7 +7,7 @@ module Api
             end
 
             def show
-                review = Review.find_by(params[:id])
+                review = Review.find(params[:id])
                 if review
                     render jsonapi: review
                 else
@@ -52,7 +52,7 @@ module Api
             private
 
             def artist
-                @artist = Artist.find(params[:artist_id])
+                @artist = Artist.find_by(params[:artist_id])
             end
 
             def venue

@@ -4,8 +4,8 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :artists, param: :slug
-      resources :venues, param: :slug
+      resources :artists
+      resources :venues
       resources :reviews
       resources :performances
     end

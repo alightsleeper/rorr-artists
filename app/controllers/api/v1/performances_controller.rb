@@ -8,7 +8,7 @@ module Api
             end
 
             def show
-                performance = Performance.find_by(params[:id])
+                performance = Performance.find(params[:id])
                 if performance
                     render jsonapi: performance
                 else
@@ -27,7 +27,7 @@ module Api
             end
 
             def update
-                performance = Performance.find_by(params[:id])
+                performance = Performance.find(params[:id])
                 if performance
                     if performance.update(performance_params)
                         render jsonapi: performance
@@ -43,22 +43,22 @@ module Api
 
 
             def destroy
-                performance = Performance.find_by(params[:id])
+                performance = Performance.find(params[:id])
                 if performance.destroy
                     head :no_content
                 else
                     render jsonapi_errors: {detail: 'Performance cannot be deleted'}, status: 422
                 end
-            end
-            
+            end        
+
             private
 
             def artist
-                @artist = Artist.find(params[:artist_id])
+                @artist = Artist.find_by(params[:artist_id])
             end
 
             def venue
-                @venue = Venue.find(params[:venue_id])
+                @venue = Venue.find_by(params[:venue_id])
             end
 
             def performance_params
