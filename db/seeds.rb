@@ -8,16 +8,27 @@
 
 artists = Artist.create([
     {
-        name: "Punch Brothers",
-        image_url: "https://bookingagentinfo.com/wp-content/uploads/2019/09/Punch-Brothers-Contact-Information.jpg"
+        name: "Tortoise",
+        image_url: "https://maroon-prod.s3.amazonaws.com/media/CACHE/images/photos/2017/01/16/tortoise/efdd7a9acd386b01d84915ac0561900a.jpeg"
     },
     {
         name: "Cheer-Accident",
         image_url: "https://www.cheer-accident.com/wp-content/uploads/2014/03/CHEER-ACCIDENT-QUARTET.jpg"
     },
     {        
-        name: "Radiohead",
-        image_url: "https://media.npr.org/assets/img/2019/06/11/gettyimages-80530629-f148b8e014c67ed40c18fa8d2f50aa5ee7d87d67-s800-c85.jpg"
+        name: "Shellac",
+        image_url: "https://www.wmse.org/wp-content/uploads/2020/02/600x360-Shellac-2020.png"
+    }
+])
+
+venues = Venue.create([
+    {
+        name: "Hungry Brain",
+        image_url: "https://scontent-ort2-1.xx.fbcdn.net/v/t31.0-8/12764738_10153572230519164_7275033678571519826_o.jpg?_nc_cat=111&ccb=2&_nc_sid=09cbfe&_nc_ohc=aA9Nic-7qgQAX88kKir&_nc_ht=scontent-ort2-1.xx&oh=05b5d1a92df7ca3d7deab7be5ff804d2&oe=5FFA162D"
+    },
+    {        
+        name: "Cafe Mustache",
+        image_url: "https://scontent-ort2-1.xx.fbcdn.net/v/t1.0-9/540307_402209006456728_452039113_n.jpg?_nc_cat=100&ccb=2&_nc_sid=09cbfe&_nc_ohc=dvgQZylUKoYAX_JilZF&_nc_ht=scontent-ort2-1.xx&oh=564e1695b1580e94d582ab5dbacac998&oe=5FF793AF"
     }
 ])
 
@@ -26,27 +37,35 @@ reviews = Review.create([
         title: 'Great band',
         description: 'I had a lovely time.',
         score: 5,
-        artist: artists.first
+        artist_id: artists.first.id
     },
     {
         title: 'Lousy!',
         description: 'Weird band, made me uncomfortable.',
         score: 1,
-        artist: artists.last       
+        artist_id: artists.last.id     
+    },
+    {
+        title: 'Cool little spot',
+        description: 'Weird bands, a nice venue.',
+        score: 1,
+        venue_id: venues.last.id      
     }
 ])
 
 performances = Performance.create([
     {
-        title: 'Punch Brothers at Madison Square Garden',
-        description: 'I had a lovely time.',
         date: '2019-03-27 22:00:00',
-        artist: artists.first
+        title: 'Tortoise at Hungry Brain',
+        description: 'One night only!',
+        artist_id: artists.first.id,
+        venue_id: venues.first.id
     },
     {
-        title: 'Radiohead at Madison Square Garden',
-        description: 'Weird band, made me uncomfortable.',
         date: '2014-05-11 22:00:00',
-        artist: artists.last       
+        title: 'Shellac at the Hideout',
+        description: 'One night only!',
+        artist_id: artists.last.id,
+        venue_id: venues.last.id       
     }
 ])

@@ -1,3 +1,5 @@
 class Performance < ApplicationRecord
-  belongs_to :artist
+  has_many :reviews
+  references :artist
+  references :venue
 end
