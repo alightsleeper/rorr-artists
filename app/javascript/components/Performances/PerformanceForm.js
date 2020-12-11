@@ -83,7 +83,7 @@ const PerformanceForm = (props) => {
             <form onSubmit={handleSubmit}>
                 <FormTitle>Request a Performance:</FormTitle>
                 <Field>
-                    <input type="datetime-local" onChange={handleChange} value={performance.date} name="date" />
+                    <input type="date" onChange={handleChange} value={performance.date} name="date" placeholder="Replace me with a datepicker..."/>
                 </Field>
                 <Field>
                     <input type="text" onChange={handleChange} value={performance.title} name="title" placeholder="Title..." />

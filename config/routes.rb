@@ -6,8 +6,8 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :artists, param: :slug
       resources :venues, param: :slug
-      resources :reviews, only: [:create, :destroy]
-      resources :performances, only: [:create, :destroy]
+      resources :reviews
+      resources :performances
     end
   end
 

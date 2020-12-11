@@ -37,19 +37,19 @@ reviews = Review.create([
         title: 'Great band',
         description: 'I had a lovely time.',
         score: 5,
-        artist: artists.first
+        artist_id: artists.first.id
     },
     {
         title: 'Lousy!',
         description: 'Weird band, made me uncomfortable.',
         score: 1,
-        artist: artists.last       
+        artist_id: artists.last.id     
     },
     {
         title: 'Cool little spot',
         description: 'Weird bands, a nice venue.',
         score: 1,
-        venue: venues.last       
+        venue_id: venues.last.id      
     }
 ])
 
@@ -58,14 +58,14 @@ performances = Performance.create([
         date: '2019-03-27 22:00:00',
         title: 'Tortoise at Hungry Brain',
         description: 'One night only!',
-        artist: artists.first,
-        venue: venues.first
+        artist_id: artists.first.id,
+        venue_id: venues.first.id
     },
     {
         date: '2014-05-11 22:00:00',
         title: 'Shellac at the Hideout',
         description: 'One night only!',
-        artist: artists.last,
-        venue: venues.last       
+        artist_id: artists.last.id,
+        venue_id: venues.last.id       
     }
 ])
