@@ -12,10 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2020_12_11_172345) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
-  create_table "artists", force: :cascade do |t|
+  create_table "artists", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.string "image_url"
     t.string "slug"
@@ -23,7 +20,7 @@ ActiveRecord::Schema.define(version: 2020_12_11_172345) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "performances", force: :cascade do |t|
+  create_table "performances", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.datetime "date"
     t.string "title"
     t.text "description"
@@ -35,7 +32,7 @@ ActiveRecord::Schema.define(version: 2020_12_11_172345) do
     t.index ["venue_id"], name: "index_performances_on_venue_id"
   end
 
-  create_table "reviews", force: :cascade do |t|
+  create_table "reviews", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title"
     t.string "description"
     t.integer "score"
@@ -49,7 +46,7 @@ ActiveRecord::Schema.define(version: 2020_12_11_172345) do
     t.index ["venue_id"], name: "index_reviews_on_venue_id"
   end
 
-  create_table "venues", force: :cascade do |t|
+  create_table "venues", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.string "image_url"
     t.string "slug"
