@@ -1,5 +1,5 @@
 class Performance < ApplicationRecord
   has_many :reviews
-  references :artist
-  references :venue
+  belongs_to :artist #TODO: this should be has_and_belongs_to_many
+  belongs_to :venue
 end

@@ -1,5 +1,5 @@
 class Review < ApplicationRecord
-  references :artist
-  references :venue
-  references :performance
+  belongs_to :artist
+  belongs_to :venue
+  belongs_to :performance
 end
