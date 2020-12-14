@@ -26,7 +26,7 @@ module Api
             end
 
             def update
-                review = Review.find_by(params[:id])
+                review = Review.find(params[:id])
                 if review
                     if review.update(review_params)
                         render jsonapi: review
@@ -41,7 +41,7 @@ module Api
             end
 
             def destroy
-                review = Review.find_by(params[:id])
+                review = Review.find(params[:id])
                 if review.destroy
                     head :no_content
                 else
@@ -52,7 +52,7 @@ module Api
             private
 
             def artist
-                @artist = Artist.find_by(params[:artist_id])
+                @artist = Artist.find(params[:artist_id])
             end
 
             def venue

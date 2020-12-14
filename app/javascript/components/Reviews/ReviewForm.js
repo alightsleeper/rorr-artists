@@ -97,7 +97,7 @@ const ReviewForm = (props) => {
     return (
         <Wrapper>
             <form onSubmit={handleSubmit}>
-                <FormTitle>Review this Artist:</FormTitle>
+                <FormTitle>Add a Review:</FormTitle>
                 <Field>
                     <RatingFormInput ratingOptions={ratingOptions} />
                 </Field>

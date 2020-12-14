@@ -54,11 +54,11 @@ module Api
             private
 
             def artist
-                @artist = Artist.find_by(params[:artist_id])
+                @artist = Artist.find(params[:artist_id])
             end
 
             def venue
-                @venue = Venue.find_by(params[:venue_id])
+                @venue = Venue.find(params[:venue_id])
             end
 
             def performance_params
