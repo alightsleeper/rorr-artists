@@ -1,4 +1,5 @@
-import React, {Fragment} from 'react'
+import React from 'react'
+import DateTimePicker from 'react-datetime-picker'
 import axios from 'axios'
 import styled from 'styled-components' 
 
@@ -72,10 +73,15 @@ const PerformanceForm = (props) => {
         .then( () => {
             performances.push(performance)
             setPerformances(performances)
-            setPerformance({title: '', description: '', date: ''})
+            setPerformance({title: '', description: '', date: new Date().toISOString()})
             setPerformanceInProgress(false)
         })
         .catch(err => console.log(err))
+    }
+
+    const setPerformanceDate = (date) => {
+        setPerformanceInProgress(true)
+        setPerformance(Object.assign({}, performance, {"artist_id": artist.data.id, date: new Date(date).toISOString()}))
     }
 
     return (
@@ -83,7 +89,7 @@ const PerformanceForm = (props) => {
             <form onSubmit={handleSubmit}>
                 <FormTitle>Request a Performance:</FormTitle>
                 <Field>
-                    <input type="date" onChange={handleChange} value={performance.date} name="date" placeholder="Replace me with a datepicker..."/>
+                    <DateTimePicker disableClock={true} onChange={setPerformanceDate} value={new Date(performance.date)} name="date"/>
                 </Field>
                 <Field>
                     <input type="text" onChange={handleChange} value={performance.title} name="title" placeholder="Title..." />

@@ -22,9 +22,7 @@ const Column = styled.div`
         color: #fff;
     }
     &:last-child {
-        padding: 0 0 0 25px;
         background: #bb73ff;
-        color: #fff;
     }
 `
 
@@ -32,7 +30,7 @@ const Artist = (props) => {
     const [artist, setArtist] = useState({})
     const [loaded, setLoaded] = useState(false)
     const [performances, setPerformances] = useState([])
-    const [performance, setPerformance] = useState({title: '', description: ''})
+    const [performance, setPerformance] = useState({title: '', description: '', date: new Date().toISOString()})
     const [performanceInProgress, setPerformanceInProgress] = useState(false)
     const [reviews, setReviews] = useState([])
     const [review, setReview] = useState({title: '', description: '', score: 0})
@@ -70,15 +68,6 @@ const Artist = (props) => {
             <Fragment>
                 <Column>
                     <Header attributes={artist.data.attributes}/>
-                    <ReviewForm
-                        artist={artist} 
-                        review={review}
-                        reviews={reviews}
-                        reviewInProgress={reviewInProgress}
-                        setReview={setReview}
-                        setReviews={setReviews}
-                        setReviewInProgress={setReviewInProgress}
-                    />
                     <PerformanceForm
                         artist={artist} 
                         performance={performance}
@@ -88,12 +77,21 @@ const Artist = (props) => {
                         setPerformances={setPerformances}
                         setPerformanceInProgress={setPerformanceInProgress}
                     />
-                </Column>
-                <Column>
-                    {reviewsList}
+                    <ReviewForm
+                        artist={artist} 
+                        review={review}
+                        reviews={reviews}
+                        reviewInProgress={reviewInProgress}
+                        setReview={setReview}
+                        setReviews={setReviews}
+                        setReviewInProgress={setReviewInProgress}
+                    />
                 </Column>
                 <Column>
                     {performancesList}
+                </Column>
+                <Column>
+                    {reviewsList}
                 </Column> 
             </Fragment>
         }
