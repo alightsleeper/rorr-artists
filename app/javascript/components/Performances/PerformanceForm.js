@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect} from 'react'
 import DateTimePicker from 'react-datetime-picker'
 import axios from 'axios'
 import styled from 'styled-components' 
@@ -84,12 +84,37 @@ const PerformanceForm = (props) => {
         setPerformance(Object.assign({}, performance, {"artist_id": artist.data.id, date: new Date(date).toISOString()}))
     }
 
+    const [venues, setVenues] = useState([])
+
+    useEffect( () => {
+        axios.get('/api/v1/venues')
+        .then( resp => setVenues(resp.data.data))
+        .catch( resp => console.log(resp))
+    }, [venues.length])
+
+    const venueOptions = venues.map( item => {
+        return (
+            <option key={item.id} value={item.id}>{item.attributes.name}</option>
+        )
+    })
+
+    const setPerformanceVenue = (e) => {
+        setPerformanceInProgress(true)
+        setPerformance(Object.assign({}, performance, {"artist_id": artist.data.id, "venue_id": e.target.value}))
+    }
+
     return (
         <Wrapper>
             <form onSubmit={handleSubmit}>
                 <FormTitle>Request a Performance:</FormTitle>
                 <Field>
                     <DateTimePicker disableClock={true} onChange={setPerformanceDate} value={new Date(performance.date)} name="date"/>
+                </Field>
+                <Field>
+                    <select value={performance.venue_id} name="venue_id" onChange={setPerformanceVenue}>
+                        <option value="">Select a Venue</option>
+                        {venueOptions}
+                    </select>
                 </Field>
                 <Field>
                     <input type="text" onChange={handleChange} value={performance.title} name="title" placeholder="Title..." />

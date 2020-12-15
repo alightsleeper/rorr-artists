@@ -17,7 +17,7 @@ class InitialSetup < ActiveRecord::Migration[6.0]
     end
   
     create_table "performances", force: :cascade do |t|
-      t.datetime "date"
+      t.datetime "date", precision: 6
       t.string "title"
       t.text "description"
       t.bigint "artist_id"
