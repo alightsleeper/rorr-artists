@@ -9,7 +9,7 @@ const Card = styled.div`
     background: #fff;
     padding: 0 0 20px 0;
 `
-const ArtistLogo = styled.div`
+const VenueLogo = styled.div`
     width: 150px;
     margin-left: auto;
     margin-right: auto;
@@ -21,22 +21,22 @@ const ArtistLogo = styled.div`
         border: 3px solid #00e3e3;
     }
 `
-const ArtistName = styled.div`
+const VenueName = styled.div`
     padding: 20px 0 10px 0;
 `
 
-const Artist = (props) => {
+const Venue = (props) => {
     return (
         <Card>
-            <Link to={`/artists/${props.id}`}>
-                <ArtistLogo>
+            <Link to={`/venues/${props.id}`}>
+                <VenueLogo>
                     <img src={props.attributes.image_url} alt={props.attributes.name}/>
-                </ArtistLogo>
+                </VenueLogo>
             </Link>
-            <ArtistName>{props.attributes.name}</ArtistName>
+            <VenueName>{props.attributes.name}</VenueName>
             <Rating score={props.attributes.avg_score} />
         </Card>
     )
 }
 
-export default Artist
+export default Venue
