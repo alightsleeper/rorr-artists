@@ -1,6 +1,6 @@
 import React, { useState, useEffect} from 'react'
 import axios from 'axios'
-import Artist from './Artist'
+import Card from '../Card'
 import styled from 'styled-components'
 
 const Wrapper = styled.div`
@@ -36,7 +36,8 @@ const Artists = () => {
 
     const grid = artists.map( item => {
         return (
-            <Artist 
+            <Card
+                type='artists' 
                 key={item.attributes.name}
                 attributes={item.attributes}
                 id={item.id}

@@ -1,6 +1,6 @@
 import React, { useState, useEffect} from 'react'
 import axios from 'axios'
-import Venue from './Venue'
+import Card from '../Card'
 import styled from 'styled-components'
 
 const Wrapper = styled.div`
@@ -36,7 +36,8 @@ const Venues = () => {
 
     const grid = venues.map( item => {
         return (
-            <Venue 
+            <Card 
+                type='venues'
                 key={item.attributes.name}
                 attributes={item.attributes}
                 id={item.id}
