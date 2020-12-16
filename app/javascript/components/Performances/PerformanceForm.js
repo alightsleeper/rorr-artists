@@ -73,7 +73,7 @@ const PerformanceForm = (props) => {
         .then( () => {
             performances.push(performance)
             setPerformances(performances)
-            setPerformance({title: '', description: '', date: new Date().toISOString()})
+            setPerformance({title: '', description: '', date: new Date().toISOString(), venue_id: ''})
             setPerformanceInProgress(false)
         })
         .catch(err => console.log(err))
@@ -115,9 +115,6 @@ const PerformanceForm = (props) => {
                         <option value="">Select a Venue</option>
                         {venueOptions}
                     </select>
-                </Field>
-                <Field>
-                    <input type="text" onChange={handleChange} value={performance.title} name="title" placeholder="Title..." />
                 </Field>
                 <Field>
                     <textarea onChange={handleChange} value={performance.description} name="description" placeholder="Description..." />

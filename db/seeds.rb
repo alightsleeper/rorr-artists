@@ -56,14 +56,12 @@ reviews = Review.create([
 performances = Performance.create([
     {
         date: '2019-03-27 22:00:00',
-        title: 'Tortoise at Hungry Brain',
         description: 'One night only!',
         artist_id: artists.first.id,
         venue_id: venues.first.id
     },
     {
         date: '2014-05-11 22:00:00',
-        title: 'Shellac at the Hideout',
         description: 'One night only!',
         artist_id: artists.last.id,
         venue_id: venues.last.id       
