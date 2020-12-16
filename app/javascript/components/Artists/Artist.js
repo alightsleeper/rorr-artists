@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 const Card = styled.div`
-    border: 1px solid #efefef;
+    border: 3px solid #00e3e3;
     border-radius: 40px;
     background: #fff;
     padding: 0 0 20px 0;
@@ -19,7 +19,7 @@ const ArtistLogo = styled.div`
         height: 150px;
         width: 150px;
         border-radius: 100%;
-        border: 3px solid #efefef;
+        border: 3px solid #00e3e3;
     }
 `
 const ArtistName = styled.div`
