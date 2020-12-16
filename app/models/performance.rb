@@ -1,4 +1,6 @@
 class Performance < ApplicationRecord
+  # references :artist
+  # references :venue
   has_many :reviews
 
   def artist
