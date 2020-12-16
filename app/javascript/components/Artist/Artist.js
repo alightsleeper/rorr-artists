@@ -39,12 +39,13 @@ const Artist = (props) => {
     useEffect( () => {
         const artist_id = props.match.params.id
         const url = `/api/v1/artists/${artist_id}`
-  
         axios.get(url)
         .then( resp => {
-            setArtist(resp.data)
-            setPerformances(resp.data.data.attributes.performances)
-            setReviews(resp.data.data.attributes.reviews)
+            const artist = resp.data
+            const attributes = artist.data.attributes
+            setArtist(artist)
+            setPerformances(attributes.performances)
+            setReviews(attributes.reviews)
             setLoaded(true)
         })
         .catch(err => console.log(err))

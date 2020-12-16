@@ -58,7 +58,32 @@ const SubmitButton = styled.button`
 
 const PerformanceForm = (props) => {
     const { artist, performance, performances, performanceInProgress, setPerformance, setPerformances, setPerformanceInProgress } = props
-    
+    const [venues, setVenues] = useState([])
+
+    useEffect( () => {
+        axios.get('/api/v1/venues')
+        .then( resp => setVenues(resp.data.data))
+        .catch( resp => console.log(resp))
+    }, [venues.length])
+
+    const venueOptions = venues.map( item => {
+        return (
+            <option key={item.id} value={item.id}>{item.attributes.name}</option>
+        )
+    })
+
+    const setPerformanceDate = (date) => {
+        setPerformanceInProgress(true)
+        setPerformance(Object.assign({}, performance, {"artist_id": artist.data.id, date: new Date(date).toISOString()}))
+    }
+
+    const setPerformanceVenue = (e) => {
+        const venue = venues.find(v => v.id == e.target.value)
+        const title = artist.data.attributes.name + " at " + venue.attributes.name
+        setPerformanceInProgress(true)
+        setPerformance(Object.assign({}, performance, {"artist_id": artist.data.id, "venue_id": e.target.value, "title": title}))
+    }
+  
     const handleChange = (e) => {
         e.preventDefault()
         setPerformanceInProgress(true)
@@ -77,32 +102,6 @@ const PerformanceForm = (props) => {
             setPerformanceInProgress(false)
         })
         .catch(err => console.log(err))
-    }
-
-    const setPerformanceDate = (date) => {
-        setPerformanceInProgress(true)
-        setPerformance(Object.assign({}, performance, {"artist_id": artist.data.id, date: new Date(date).toISOString()}))
-    }
-
-    const [venues, setVenues] = useState([])
-
-    useEffect( () => {
-        axios.get('/api/v1/venues')
-        .then( resp => setVenues(resp.data.data))
-        .catch( resp => console.log(resp))
-    }, [venues.length])
-
-    const venueOptions = venues.map( item => {
-        return (
-            <option key={item.id} value={item.id}>{item.attributes.name}</option>
-        )
-    })
-
-    const setPerformanceVenue = (e) => {
-        const venue = venues.find(v => v.id == e.target.value)
-        const title = artist.data.attributes.name + " at " + venue.attributes.name
-        setPerformanceInProgress(true)
-        setPerformance(Object.assign({}, performance, {"artist_id": artist.data.id, "venue_id": e.target.value, "title": title}))
     }
 
     return (
