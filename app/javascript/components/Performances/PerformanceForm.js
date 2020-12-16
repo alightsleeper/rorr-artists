@@ -73,7 +73,7 @@ const PerformanceForm = (props) => {
         .then( () => {
             performances.push(performance)
             setPerformances(performances)
-            setPerformance({title: '', description: '', date: new Date().toISOString(), venue_id: ''})
+            setPerformance({description: '', date: new Date().toISOString(), venue_id: ''})
             setPerformanceInProgress(false)
         })
         .catch(err => console.log(err))
@@ -99,8 +99,10 @@ const PerformanceForm = (props) => {
     })
 
     const setPerformanceVenue = (e) => {
+        const venue = venues.find(v => v.id == e.target.value)
+        const title = artist.data.attributes.name + " at " + venue.attributes.name
         setPerformanceInProgress(true)
-        setPerformance(Object.assign({}, performance, {"artist_id": artist.data.id, "venue_id": e.target.value}))
+        setPerformance(Object.assign({}, performance, {"artist_id": artist.data.id, "venue_id": e.target.value, "title": title}))
     }
 
     return (

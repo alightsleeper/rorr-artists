@@ -1,11 +1,15 @@
 class Performance < ApplicationRecord
   has_many :reviews
-  references :artist
-  references :venue
+
+  def artist
+    Artist.find_by(id: [artist_id])
+  end
+
+  def venue
+    Venue.find_by(id: [venue_id])
+  end
 
   def title
-    a = Artist.find([artist_id]).first
-    v = Venue.find([venue_id]).first
-    a.name + ' at ' + v.name
+    artist.name + ' at ' + venue.name
   end
 end

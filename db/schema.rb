@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 2020_12_11_172345) do
   end
 
   create_table "performances", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.datetime "date", precision: 6
+    t.datetime "date"
     t.string "title"
     t.text "description"
     t.bigint "artist_id"
