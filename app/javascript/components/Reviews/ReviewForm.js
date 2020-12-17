@@ -57,12 +57,17 @@ const SubmitButton = styled.button`
 `
 
 const ReviewForm = (props) => {
-    const { artist, review, reviews, reviewInProgress, setReview, setReviews, setReviewInProgress } = props
+    const { artist, venue, review, reviews, reviewInProgress, setReview, setReviews, setReviewInProgress } = props
     
     const handleChange = (e) => {
         e.preventDefault()
         setReviewInProgress(true)
-        setReview(Object.assign({}, review, {"artist_id": artist.data.id, [e.target.name]: e.target.value}))
+        if (artist) {
+            setReview(Object.assign({}, review, {"artist_id": artist.data.id, [e.target.name]: e.target.value}))
+        } 
+        if (venue) {
+            setReview(Object.assign({}, review, {"venue_id": venue.data.id, [e.target.name]: e.target.value}))
+        }
     }
 
     const handleSubmit = (e) => {
@@ -82,7 +87,12 @@ const ReviewForm = (props) => {
     const setRating = (score, e) => {
         e.preventDefault()
         setReviewInProgress(true)
-        setReview(Object.assign({}, review, {"artist_id": artist.data.id, "score": score}))
+        if (artist) {
+            setReview(Object.assign({}, review, {"artist_id": artist.data.id, "score": score}))
+        }
+        if (venue) {
+            setReview(Object.assign({}, review, {"venue_id": venue.data.id, "score": score}))
+        }
     }
 
     const ratingOptions = [5,4,3,2,1].map( (score, index) => {

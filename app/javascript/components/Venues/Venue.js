@@ -77,7 +77,7 @@ const Venue = (props) => {
                         setPerformance={setPerformance}
                         setPerformances={setPerformances}
                         setPerformanceInProgress={setPerformanceInProgress}
-                    />
+                    />*/}
                     <ReviewForm
                         venue={venue} 
                         review={review}
@@ -86,7 +86,7 @@ const Venue = (props) => {
                         setReview={setReview}
                         setReviews={setReviews}
                         setReviewInProgress={setReviewInProgress}
-                    /> */}
+                    /> 
                 </Column>
                 <Column>
                     {performancesList}
