@@ -57,24 +57,51 @@ const SubmitButton = styled.button`
 `
 
 const PerformanceForm = (props) => {
-    const { artist, performance, performances, performanceInProgress, setPerformance, setPerformances, setPerformanceInProgress } = props
+    const { artist, venue, performance, performances, performanceInProgress, setPerformance, setPerformances, setPerformanceInProgress } = props
     const [venues, setVenues] = useState([])
+    const [artists, setArtists] = useState([])
 
-    useEffect( () => {
-        axios.get('/api/v1/venues')
-        .then( resp => setVenues(resp.data.data))
-        .catch( resp => console.log(resp))
-    }, [venues.length])
+    if (artist) {
+        useEffect( () => {
+            axios.get('/api/v1/venues')
+            .then( resp => setVenues(resp.data.data))
+            .catch( resp => console.log(resp))
+        }, [])
+    }
+    if (venue) {
+        useEffect( () => {
+            axios.get('/api/v1/artists')
+            .then( resp => setArtists(resp.data.data))
+            .catch( resp => console.log(resp))
+        }, [])
+    }
 
-    const venueOptions = venues.map( item => {
+    const aOptions = artists.map( v => {
         return (
-            <option key={item.id} value={item.id}>{item.attributes.name}</option>
+            <option key={v.id} value={v.id}>{v.attributes.name}</option>
+        )
+    })
+    const vOptions = venues.map( v => {
+        return (
+            <option key={v.id} value={v.id}>{v.attributes.name}</option>
         )
     })
 
     const setPerformanceDate = (date) => {
         setPerformanceInProgress(true)
-        setPerformance(Object.assign({}, performance, {"artist_id": artist.data.id, date: new Date(date).toISOString()}))
+        if (artist) {
+            setPerformance(Object.assign({}, performance, {"artist_id": artist.data.id, date: new Date(date).toISOString()}))
+        }
+        if (venue) {
+            setPerformance(Object.assign({}, performance, {"venue_id": venue.data.id, date: new Date(date).toISOString()}))
+        }
+    }
+
+    const setPerformanceArtist = (e) => {
+        const artist = artists.find(a => a.id == e.target.value)
+        const title = artist.attributes.name + " at " + venue.data.attributes.name
+        setPerformanceInProgress(true)
+        setPerformance(Object.assign({}, performance, {"venue_id": venue.data.id, "artist_id": e.target.value, "title": title}))
     }
 
     const setPerformanceVenue = (e) => {
@@ -87,7 +114,12 @@ const PerformanceForm = (props) => {
     const handleChange = (e) => {
         e.preventDefault()
         setPerformanceInProgress(true)
-        setPerformance(Object.assign({}, performance, {"artist_id": artist.data.id, [e.target.name]: e.target.value}))
+        if (artist) {
+            setPerformance(Object.assign({}, performance, {"artist_id": artist.data.id, [e.target.name]: e.target.value}))        
+        }
+        if (venue) {
+            setPerformance(Object.assign({}, performance, {"venue_id": venue.data.id, [e.target.name]: e.target.value}))
+        }
     }
 
     const handleSubmit = (e) => {
@@ -98,7 +130,7 @@ const PerformanceForm = (props) => {
         .then( () => {
             performances.push(performance)
             setPerformances(performances)
-            setPerformance({description: '', date: new Date().toISOString(), venue_id: ''})
+            setPerformance({description: '', date: new Date().toISOString(), venue_id: '', artist_id: ''})
             setPerformanceInProgress(false)
         })
         .catch(err => console.log(err))
@@ -109,13 +141,21 @@ const PerformanceForm = (props) => {
             <form onSubmit={handleSubmit}>
                 <FormTitle>Request a Performance:</FormTitle>
                 <Field>
-                    <DateTimePicker disableClock={true} onChange={setPerformanceDate} value={new Date(performance.date)} name="date"/>
+                    <DateTimePicker disableClock={true} name="date" onChange={setPerformanceDate} value={new Date(performance.date)}/>
                 </Field>
                 <Field>
-                    <select value={performance.venue_id} name="venue_id" onChange={setPerformanceVenue}>
-                        <option value="">Select a Venue</option>
-                        {venueOptions}
-                    </select>
+                    { artist &&
+                        <select value={performance.venue_id} name="venue_id" onChange={setPerformanceVenue} required>
+                            <option value="">Select a Venue</option>
+                            {vOptions}
+                        </select>
+                    }
+                    { venue && 
+                        <select value={performance.artist_id} name="artist_id" onChange={setPerformanceArtist} required>
+                            <option value="">Select an Artist</option>
+                            {aOptions}
+                        </select>
+                    }
                 </Field>
                 <Field>
                     <textarea onChange={handleChange} value={performance.description} name="description" placeholder="Description..." />

@@ -1,6 +1,6 @@
 import React from 'react'
 import Rating from './Reviews/Rating/Rating'
-import { BrowserRouter as Router, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 const Wrapper = styled.div`

@@ -69,7 +69,7 @@ const Venue = (props) => {
             <Fragment>
                 <Column>
                     <Header attributes={venue.data.attributes}/>
-                    {/* <PerformanceForm
+                    <PerformanceForm
                         venue={venue} 
                         performance={performance}
                         performances={performances}
@@ -77,7 +77,7 @@ const Venue = (props) => {
                         setPerformance={setPerformance}
                         setPerformances={setPerformances}
                         setPerformanceInProgress={setPerformanceInProgress}
-                    />*/}
+                    />
                     <ReviewForm
                         venue={venue} 
                         review={review}
