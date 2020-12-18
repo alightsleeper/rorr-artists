@@ -31,10 +31,8 @@ const Venue = (props) => {
     const [loaded, setLoaded] = useState(false)
     const [performances, setPerformances] = useState([])
     const [performance, setPerformance] = useState({title: '', description: '', date: new Date().toISOString()})
-    const [performanceInProgress, setPerformanceInProgress] = useState(false)
     const [reviews, setReviews] = useState([])
     const [review, setReview] = useState({title: '', description: '', score: 0})
-    const [reviewInProgress, setReviewInProgress] = useState(false)
 
     useEffect( () => {
         const venue_id = props.match.params.id
@@ -72,20 +70,16 @@ const Venue = (props) => {
                     <PerformanceForm
                         venue={venue} 
                         performance={performance}
-                        performances={performances}
-                        performanceInProgress={performanceInProgress}
                         setPerformance={setPerformance}
+                        performances={performances}
                         setPerformances={setPerformances}
-                        setPerformanceInProgress={setPerformanceInProgress}
                     />
                     <ReviewForm
                         venue={venue} 
                         review={review}
-                        reviews={reviews}
-                        reviewInProgress={reviewInProgress}
                         setReview={setReview}
+                        reviews={reviews}
                         setReviews={setReviews}
-                        setReviewInProgress={setReviewInProgress}
                     /> 
                 </Column>
                 <Column>

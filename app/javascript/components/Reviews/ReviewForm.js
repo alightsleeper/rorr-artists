@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react'
+import React, { Fragment, useState } from 'react'
 import axios from 'axios'
 import styled from 'styled-components' 
 import RatingFormInput from './Rating/RatingFormInput'
@@ -57,7 +57,8 @@ const SubmitButton = styled.button`
 `
 
 const ReviewForm = (props) => {
-    const { artist, venue, review, reviews, reviewInProgress, setReview, setReviews, setReviewInProgress } = props
+    const { artist, venue, setReview, review, reviews, setReviews } = props
+    const [reviewInProgress, setReviewInProgress] = useState(false)
     
     const handleChange = (e) => {
         e.preventDefault()

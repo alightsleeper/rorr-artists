@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import axios from 'axios'
@@ -58,9 +58,10 @@ const SubmitButton = styled.button`
 `
 
 const PerformanceForm = (props) => {
-    const { artist, venue, performance, performances, performanceInProgress, setPerformance, setPerformances, setPerformanceInProgress } = props
-    const [venues, setVenues] = useState([])
+    const { artist, venue, performance, setPerformance, performances, setPerformances } = props
     const [artists, setArtists] = useState([])
+    const [venues, setVenues] = useState([])
+    const [performanceInProgress, setPerformanceInProgress] = useState(false)
 
     if (artist) {
         useEffect( () => {
@@ -99,15 +100,17 @@ const PerformanceForm = (props) => {
     }
 
     const setPerformanceArtist = (e) => {
+        let title = ''
         const artist = artists.find(a => a.id == e.target.value)
-        const title = artist.attributes.name + " at " + venue.data.attributes.name
+        if (artist) {title = artist.attributes.name + " at " + venue.data.attributes.name}
         setPerformanceInProgress(true)
         setPerformance(Object.assign({}, performance, {"venue_id": venue.data.id, "artist_id": e.target.value, "title": title}))
     }
 
     const setPerformanceVenue = (e) => {
+        let title = ''
         const venue = venues.find(v => v.id == e.target.value)
-        const title = artist.data.attributes.name + " at " + venue.attributes.name
+        if (venue) {title = artist.data.attributes.name + " at " + venue.attributes.name}
         setPerformanceInProgress(true)
         setPerformance(Object.assign({}, performance, {"artist_id": artist.data.id, "venue_id": e.target.value, "title": title}))
     }

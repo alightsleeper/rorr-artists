@@ -31,10 +31,8 @@ const Artist = (props) => {
     const [loaded, setLoaded] = useState(false)
     const [performances, setPerformances] = useState([])
     const [performance, setPerformance] = useState({title: '', description: '', date: new Date().toISOString()})
-    const [performanceInProgress, setPerformanceInProgress] = useState(false)
     const [reviews, setReviews] = useState([])
     const [review, setReview] = useState({title: '', description: '', score: 0})
-    const [reviewInProgress, setReviewInProgress] = useState(false)
 
     useEffect( () => {
         const artist_id = props.match.params.id
@@ -72,20 +70,16 @@ const Artist = (props) => {
                     <PerformanceForm
                         artist={artist} 
                         performance={performance}
-                        performances={performances}
-                        performanceInProgress={performanceInProgress}
                         setPerformance={setPerformance}
+                        performances={performances}
                         setPerformances={setPerformances}
-                        setPerformanceInProgress={setPerformanceInProgress}
                     />
                     <ReviewForm
                         artist={artist} 
                         review={review}
-                        reviews={reviews}
-                        reviewInProgress={reviewInProgress}
                         setReview={setReview}
+                        reviews={reviews}
                         setReviews={setReviews}
-                        setReviewInProgress={setReviewInProgress}
                     />
                 </Column>
                 <Column>
