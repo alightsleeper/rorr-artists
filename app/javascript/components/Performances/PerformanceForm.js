@@ -1,5 +1,6 @@
 import React, { useState, useEffect} from 'react'
-import DateTimePicker from 'react-datetime-picker'
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import axios from 'axios'
 import styled from 'styled-components' 
 
@@ -141,7 +142,7 @@ const PerformanceForm = (props) => {
             <form onSubmit={handleSubmit}>
                 <FormTitle>Request a Performance:</FormTitle>
                 <Field>
-                    <DateTimePicker disableClock={true} name="date" onChange={setPerformanceDate} value={new Date(performance.date)}/>
+                    <DatePicker showTimeSelect selected={new Date(performance.date)} onChange={setPerformanceDate} name="date" />
                 </Field>
                 <Field>
                     { artist &&
