@@ -145,7 +145,7 @@ const PerformanceForm = (props) => {
             <form onSubmit={handleSubmit}>
                 <FormTitle>Request a Performance:</FormTitle>
                 <Field>
-                    <DatePicker showTimeSelect selected={new Date(performance.date)} onChange={setPerformanceDate} name="date" />
+                    <DatePicker showTimeSelect dateFormat="Pp" selected={new Date(performance.date)} onChange={setPerformanceDate} name="date" />
                 </Field>
                 <Field>
                     { artist &&
