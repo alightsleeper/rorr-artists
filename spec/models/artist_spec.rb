@@ -1,11 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Artist, :type => :model do
-    it "is valid with valid attributes" do
-        expect(Artist.new(
-            name: "Sir Digby Chicken Caesar", 
-        )).to be_valid
-    end
 
     it "is not valid without a name" do
         expect(Artist.new).to_not be_valid
@@ -22,4 +17,11 @@ RSpec.describe Artist, :type => :model do
             name: "sir digby chicken caesar", 
         )).to_not be_valid
     end
+
+    it "is valid with valid attributes" do
+        expect(Artist.new(
+            name: "Sir Digby Chicken Caesar", 
+        )).to be_valid
+    end
+
 end
