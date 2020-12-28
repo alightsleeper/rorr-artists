@@ -132,7 +132,7 @@ const PerformanceForm = (props) => {
         axios.defaults.headers.common['X-CSRF-TOKEN'] = csrfToken
         axios.post('/api/v1/performances', performance)
         .then( () => {
-            performances.push(performance)
+            performances.unshift(performance)
             setPerformances(performances)
             setPerformance({description: '', date: new Date().toISOString(), venue_id: '', artist_id: ''})
             setPerformanceInProgress(false)
@@ -145,7 +145,7 @@ const PerformanceForm = (props) => {
             <form onSubmit={handleSubmit}>
                 <FormTitle>Request a Performance:</FormTitle>
                 <Field>
-                    <DatePicker showTimeSelect dateFormat="Pp" selected={new Date(performance.date)} onChange={setPerformanceDate} name="date" />
+                    <DatePicker showTimeSelect dateFormat="E Pp" selected={new Date(performance.date)} onChange={setPerformanceDate} name="date" />
                 </Field>
                 <Field>
                     { artist &&

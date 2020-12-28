@@ -12,6 +12,8 @@ class Performance < ApplicationRecord
   end
 
   def title
-    artist.name + ' at ' + venue.name
+    aName = artist ? artist.name : 'TBD' 
+    vName = venue ? venue.name : 'TBD'
+    aName + ' at ' + vName
   end
 end

@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe Review, :type => :model do
 
     it "is not valid without a valid artist, venue or performance" do
+        Artist.new(id: 1, name: "Bob").save
         expect(Review.new(score: 2)).to_not be_valid
         expect(Review.new(artist_id: 99, score: 3)).to_not be_valid
     end
