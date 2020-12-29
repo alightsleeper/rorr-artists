@@ -31,6 +31,9 @@ const Field = styled.div`
         width: 99%;
     }
 `
+const ErrorDiv = styled.div`
+    color: red;
+`
 const SubmitButton = styled.button`
     background: #9221fc;
     color: #fff;
@@ -62,6 +65,7 @@ const PerformanceForm = (props) => {
     const [artists, setArtists] = useState([])
     const [venues, setVenues] = useState([])
     const [performanceInProgress, setPerformanceInProgress] = useState(false)
+    const [errors, setErrors] = useState([])
 
     if (artist) {
         useEffect( () => {
@@ -103,6 +107,7 @@ const PerformanceForm = (props) => {
         let title = ''
         const artist = artists.find(a => a.id == e.target.value)
         if (artist) {title = artist.attributes.name + " at " + venue.data.attributes.name}
+        setErrors([])
         setPerformanceInProgress(true)
         setPerformance(Object.assign({}, performance, {"venue_id": venue.data.id, "artist_id": e.target.value, "title": title}))
     }
@@ -111,6 +116,7 @@ const PerformanceForm = (props) => {
         let title = ''
         const venue = venues.find(v => v.id == e.target.value)
         if (venue) {title = artist.data.attributes.name + " at " + venue.attributes.name}
+        setErrors([])
         setPerformanceInProgress(true)
         setPerformance(Object.assign({}, performance, {"artist_id": artist.data.id, "venue_id": e.target.value, "title": title}))
     }
@@ -128,6 +134,7 @@ const PerformanceForm = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
+        setErrors([])
         const csrfToken = document.querySelector('[name=csrf-token]').content 
         axios.defaults.headers.common['X-CSRF-TOKEN'] = csrfToken
         axios.post('/api/v1/performances', performance)
@@ -138,25 +145,34 @@ const PerformanceForm = (props) => {
             setPerformance({description: '', date: new Date().toISOString(), venue_id: '', artist_id: ''})
             setPerformanceInProgress(false)
         })
-        .catch(err => console.log(err))
+        .catch(err => {
+            console.log(err)
+            errors.push(err)
+            setErrors(errors)
+        })
     }
 
     return (
         <Wrapper>
             <form onSubmit={handleSubmit}>
                 <FormTitle>Request a Performance:</FormTitle>
+                { errors.length > 0 &&
+                    errors.map( (error, index) => {
+                        return (<ErrorDiv key={index}>Poop! {error.message}</ErrorDiv>)
+                    })
+                }
                 <Field>
                     <DatePicker showTimeSelect dateFormat="E Pp" selected={new Date(performance.date)} onChange={setPerformanceDate} name="date" />
                 </Field>
                 <Field>
                     { artist &&
-                        <select value={performance.venue_id} name="venue_id" onChange={setPerformanceVenue} required>
+                        <select value={performance.venue_id} name="venue_id" onChange={setPerformanceVenue}>
                             <option value="">Select a Venue</option>
                             {vOptions}
                         </select>
                     }
                     { venue && 
-                        <select value={performance.artist_id} name="artist_id" onChange={setPerformanceArtist} required>
+                        <select value={performance.artist_id} name="artist_id" onChange={setPerformanceArtist}>
                             <option value="">Select an Artist</option>
                             {aOptions}
                         </select>

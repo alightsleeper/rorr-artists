@@ -21,7 +21,7 @@ module Api
                 if performance.save
                     render jsonapi: performance
                 else
-                    render jsonapi_errors: { detail: performance.errors.messages }, status: 422
+                    render jsonapi_errors: performance.errors, status: 422
                 end
             end
 
