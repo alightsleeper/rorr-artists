@@ -41,8 +41,9 @@ const Artist = (props) => {
         .then( resp => {
             const artist = resp.data
             const attributes = artist.data.attributes
+            const perfs = attributes.performances.sort((first, second) => new Date(second.date) - new Date(first.date))
             setArtist(artist)
-            setPerformances(attributes.performances)
+            setPerformances(perfs)
             setReviews(attributes.reviews)
             setLoaded(true)
         })

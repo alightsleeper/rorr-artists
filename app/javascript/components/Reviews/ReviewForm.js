@@ -77,7 +77,7 @@ const ReviewForm = (props) => {
         axios.defaults.headers.common['X-CSRF-TOKEN'] = csrfToken
         axios.post('/api/v1/reviews', review)
         .then( () => {
-            reviews.unshift(review)
+            reviews.push(review)
             setReviews(reviews)
             setReview({title: '', description: '', score: 0})
             setReviewInProgress(false)

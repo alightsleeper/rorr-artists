@@ -41,8 +41,9 @@ const Venue = (props) => {
         .then( resp => {
             const venue = resp.data
             const attributes = venue.data.attributes
+            const perfs = attributes.performances.sort((first, second) => new Date(second.date) - new Date(first.date))
             setVenue(venue)
-            setPerformances(attributes.performances)
+            setPerformances(perfs)
             setReviews(attributes.reviews)
             setLoaded(true)
         })

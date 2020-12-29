@@ -132,7 +132,8 @@ const PerformanceForm = (props) => {
         axios.defaults.headers.common['X-CSRF-TOKEN'] = csrfToken
         axios.post('/api/v1/performances', performance)
         .then( () => {
-            performances.unshift(performance)
+            performances.push(performance)
+            performances.sort((first, second) => new Date(second.date) - new Date(first.date))
             setPerformances(performances)
             setPerformance({description: '', date: new Date().toISOString(), venue_id: '', artist_id: ''})
             setPerformanceInProgress(false)
