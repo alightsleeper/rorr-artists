@@ -12,8 +12,7 @@ module Api
                 if performance
                     render jsonapi: performance
                 else
-                    error = {detail: 'Performance with id ' + params[:id] + ' not found'}
-                    render jsonapi_errors: error, status: 404
+                    render jsonapi_errors: { detail: performance.errors.messages }, status: 404
                 end
             end
 
@@ -32,12 +31,10 @@ module Api
                     if performance.update(performance_params)
                         render jsonapi: performance
                     else
-                        error = {detail: 'Performance with id ' + params[:id] + ' cannot be updated'}
-                        render jsonapi_errors: error, status: 422    
+                        render jsonapi_errors: { detail: performance.errors.messages }, status: 422
                     end
                 else
-                    error = {detail: 'Performance with id ' + params[:id] + ' does not exist'}
-                    render jsonapi_errors: error, status: 404
+                    render jsonapi_errors: { detail: performance.errors.messages }, status: 404
                 end
             end
 
@@ -47,7 +44,7 @@ module Api
                 if performance.destroy
                     head :no_content
                 else
-                    render jsonapi_errors: {detail: 'Performance cannot be deleted'}, status: 422
+                    render jsonapi_errors: { detail: performance.errors.messages }, status: 422
                 end
             end        
 
