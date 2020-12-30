@@ -94,6 +94,7 @@ const PerformanceForm = (props) => {
     })
 
     const setPerformanceDate = (date) => {
+        setErrors([])
         setPerformanceInProgress(true)
         if (artist) {
             setPerformance(Object.assign({}, performance, {"artist_id": artist.data.id, date: new Date(date).toISOString()}))

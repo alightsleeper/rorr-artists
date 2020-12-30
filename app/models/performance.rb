@@ -6,6 +6,7 @@ class Performance < ApplicationRecord
   validates :artist, presence: true, on: :create
   validates :venue, presence: true, on: :create
   validate :has_artist_or_venue, on: :update
+  validate :date_is_valid_and_available
 
   def artist
     Artist.find_by(id: [artist_id])
@@ -33,5 +34,11 @@ class Performance < ApplicationRecord
     if venue_id and !venue
       errors.add(:venue_id, :invalid)
     end
+  end
+
+  def date_is_valid_and_available
+      unless Date.parse(date.to_s).after?(Date.today)
+        errors.add(:date, :invalid)
+      end
   end
 end
