@@ -13,7 +13,6 @@ import Venue from './Venues/Venue'
 const App = () => {
     return (
         <Router>
-            <Link to="/">Home</Link>
             <Link to="/artists">Artists</Link>
             <Link to="/venues">Venues</Link>
             <Switch>

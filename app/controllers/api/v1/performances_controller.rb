@@ -1,6 +1,7 @@
 module Api
     module V1
         class PerformancesController < ApplicationController
+            before_action :authenticate_user!, only: [:create]
 
             def index
                 performances = Performance.all

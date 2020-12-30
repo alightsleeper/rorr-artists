@@ -11,7 +11,7 @@ RSpec.describe Performance, :type => :model do
         expect(Performance.new(artist_id: 1, venue_id: 1, date: 4.days.from_now)).to be_valid           
     end
 
-    it "can be updated to remove or artist or venue, but not both" do
+    it "can be updated to remove artist or venue, but not both" do
         Artist.new(id: 1, name: "Bob").save
         Venue.new(id: 1, name: "Bob's Burgers").save
         p = Performance.new(artist_id: 1, venue_id: 1, date: 4.days.from_now)

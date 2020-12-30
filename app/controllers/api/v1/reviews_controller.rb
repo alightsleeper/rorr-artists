@@ -1,6 +1,8 @@
 module Api
     module V1
         class ReviewsController < ApplicationController
+            before_action :authenticate_user!, only: [:create]
+
             def index
                 reviews = Review.all
                 render jsonapi: reviews
@@ -52,7 +54,7 @@ module Api
             private
 
             def review_params
-                params.require(:review).permit(:title, :description, :score, :artist_id, :venue_id, :performance_id)
+                params.require(:review).permit(:title, :description, :score, :artist_id, :venue_id, :performance_id, :user_id)
             end
         end 
     end
