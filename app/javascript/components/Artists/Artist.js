@@ -68,20 +68,24 @@ const Artist = (props) => {
             <Fragment>
                 <Column>
                     <Header attributes={artist.data.attributes}/>
-                    <PerformanceForm
-                        artist={artist} 
-                        performance={performance}
-                        setPerformance={setPerformance}
-                        performances={performances}
-                        setPerformances={setPerformances}
-                    />
-                    <ReviewForm
-                        artist={artist} 
-                        review={review}
-                        setReview={setReview}
-                        reviews={reviews}
-                        setReviews={setReviews}
-                    />
+                    { auth.value == "true" &&
+                    <>
+                        <PerformanceForm
+                            artist={artist} 
+                            performance={performance}
+                            setPerformance={setPerformance}
+                            performances={performances}
+                            setPerformances={setPerformances}
+                        />
+                        <ReviewForm
+                            artist={artist} 
+                            review={review}
+                            setReview={setReview}
+                            reviews={reviews}
+                            setReviews={setReviews}
+                        />
+                    </>
+                    }
                 </Column>
                 <Column>
                     {performancesList}

@@ -1,7 +1,7 @@
 module Api
     module V1
         class ReviewsController < ApplicationController
-            before_action :authenticate_user!, only: [:create]
+            before_action :authenticate_user!, only: [:create, :update, :destroy]
 
             def index
                 reviews = Review.all

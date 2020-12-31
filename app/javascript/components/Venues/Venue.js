@@ -68,20 +68,24 @@ const Venue = (props) => {
             <Fragment>
                 <Column>
                     <Header attributes={venue.data.attributes}/>
-                    <PerformanceForm
-                        venue={venue} 
-                        performance={performance}
-                        setPerformance={setPerformance}
-                        performances={performances}
-                        setPerformances={setPerformances}
-                    />
-                    <ReviewForm
-                        venue={venue} 
-                        review={review}
-                        setReview={setReview}
-                        reviews={reviews}
-                        setReviews={setReviews}
-                    /> 
+                    { auth.value == "true" &&
+                    <>
+                        <PerformanceForm
+                            venue={venue} 
+                            performance={performance}
+                            setPerformance={setPerformance}
+                            performances={performances}
+                            setPerformances={setPerformances}
+                        />
+                        <ReviewForm
+                            venue={venue} 
+                            review={review}
+                            setReview={setReview}
+                            reviews={reviews}
+                            setReviews={setReviews}
+                        /> 
+                    </>
+                    }
                 </Column>
                 <Column>
                     {performancesList}
