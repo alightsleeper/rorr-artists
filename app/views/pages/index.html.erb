@@ -1,7 +1,7 @@
 <nav style="text-align: right">
     <% if user_signed_in? %>
         <%= link_to('Logout', destroy_user_session_path) %>  
-        <input type="text" id="userId" value="<%= current_user.id %>" />        
+        <input type="hidden" id="userId" value="<%= current_user.id %>" />        
     <% else %>
         <%= link_to('Login', new_user_session_path)  %> |
         <%= link_to('Sign Up', new_user_registration_path)  %>  
