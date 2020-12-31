@@ -22,10 +22,12 @@ class InitialSetup < ActiveRecord::Migration[6.0]
       t.text "description"
       t.bigint "artist_id"
       t.bigint "venue_id"
+      t.bigint "user_id"
       t.datetime "created_at", precision: 6, null: false
       t.datetime "updated_at", precision: 6, null: false
       t.index ["artist_id"], name: "index_performances_on_artist_id"
       t.index ["venue_id"], name: "index_performances_on_venue_id"
+      t.index ["user_id"], name: "index_performances_on_user_id"
     end
   
     create_table "reviews", force: :cascade do |t|
@@ -35,11 +37,13 @@ class InitialSetup < ActiveRecord::Migration[6.0]
       t.bigint "artist_id"
       t.bigint "venue_id"
       t.bigint "performance_id"
+      t.bigint "user_id"
       t.datetime "created_at", precision: 6, null: false
       t.datetime "updated_at", precision: 6, null: false
       t.index ["artist_id"], name: "index_reviews_on_artist_id"
       t.index ["venue_id"], name: "index_reviews_on_venue_id"
       t.index ["performance_id"], name: "index_reviews_on_performance_id"
+      t.index ["user_id"], name: "index_reviews_on_user_id"
     end  
   end
 end

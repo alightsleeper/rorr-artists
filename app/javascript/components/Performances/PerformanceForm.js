@@ -97,10 +97,10 @@ const PerformanceForm = (props) => {
         setErrors([])
         setPerformanceInProgress(true)
         if (artist) {
-            setPerformance(Object.assign({}, performance, {"artist_id": artist.data.id, date: new Date(date).toISOString()}))
+            setPerformance(Object.assign({}, performance, {"user_id": userId.value, "artist_id": artist.data.id, date: new Date(date).toISOString()}))
         }
         if (venue) {
-            setPerformance(Object.assign({}, performance, {"venue_id": venue.data.id, date: new Date(date).toISOString()}))
+            setPerformance(Object.assign({}, performance, {"user_id": userId.value, "venue_id": venue.data.id, date: new Date(date).toISOString()}))
         }
     }
 
@@ -110,7 +110,7 @@ const PerformanceForm = (props) => {
         if (artist) {title = artist.attributes.name + " at " + venue.data.attributes.name}
         setErrors([])
         setPerformanceInProgress(true)
-        setPerformance(Object.assign({}, performance, {"venue_id": venue.data.id, "artist_id": e.target.value, "title": title}))
+        setPerformance(Object.assign({}, performance, {"user_id": userId.value, "venue_id": venue.data.id, "artist_id": e.target.value, "title": title}))
     }
 
     const setPerformanceVenue = (e) => {
@@ -119,17 +119,17 @@ const PerformanceForm = (props) => {
         if (venue) {title = artist.data.attributes.name + " at " + venue.attributes.name}
         setErrors([])
         setPerformanceInProgress(true)
-        setPerformance(Object.assign({}, performance, {"artist_id": artist.data.id, "venue_id": e.target.value, "title": title}))
+        setPerformance(Object.assign({}, performance, {"user_id": userId.value, "artist_id": artist.data.id, "venue_id": e.target.value, "title": title}))
     }
   
     const handleChange = (e) => {
         e.preventDefault()
         setPerformanceInProgress(true)
         if (artist) {
-            setPerformance(Object.assign({}, performance, {"artist_id": artist.data.id, [e.target.name]: e.target.value}))        
+            setPerformance(Object.assign({}, performance, {"user_id": userId.value, "artist_id": artist.data.id, [e.target.name]: e.target.value}))        
         }
         if (venue) {
-            setPerformance(Object.assign({}, performance, {"venue_id": venue.data.id, [e.target.name]: e.target.value}))
+            setPerformance(Object.assign({}, performance, {"user_id": userId.value, "venue_id": venue.data.id, [e.target.name]: e.target.value}))
         }
     }
 

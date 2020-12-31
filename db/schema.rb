@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_30_190908) do
+ActiveRecord::Schema.define(version: 2020_12_31_012345) do
 
   create_table "artists", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
@@ -26,9 +26,11 @@ ActiveRecord::Schema.define(version: 2020_12_30_190908) do
     t.text "description"
     t.bigint "artist_id"
     t.bigint "venue_id"
+    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["artist_id"], name: "index_performances_on_artist_id"
+    t.index ["user_id"], name: "index_performances_on_user_id"
     t.index ["venue_id"], name: "index_performances_on_venue_id"
   end
 
@@ -39,10 +41,12 @@ ActiveRecord::Schema.define(version: 2020_12_30_190908) do
     t.bigint "artist_id"
     t.bigint "venue_id"
     t.bigint "performance_id"
+    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["artist_id"], name: "index_reviews_on_artist_id"
     t.index ["performance_id"], name: "index_reviews_on_performance_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
     t.index ["venue_id"], name: "index_reviews_on_venue_id"
   end
 

@@ -59,15 +59,15 @@ const SubmitButton = styled.button`
 const ReviewForm = (props) => {
     const { artist, venue, setReview, review, reviews, setReviews } = props
     const [reviewInProgress, setReviewInProgress] = useState(false)
-    
+
     const handleChange = (e) => {
         e.preventDefault()
         setReviewInProgress(true)
         if (artist) {
-            setReview(Object.assign({}, review, {"artist_id": artist.data.id, [e.target.name]: e.target.value}))
+            setReview(Object.assign({}, review, {"user_id": userId.value, "artist_id": artist.data.id, [e.target.name]: e.target.value}))
         } 
         if (venue) {
-            setReview(Object.assign({}, review, {"venue_id": venue.data.id, [e.target.name]: e.target.value}))
+            setReview(Object.assign({}, review, {"user_id": userId.value, "venue_id": venue.data.id, [e.target.name]: e.target.value}))
         }
     }
 
@@ -89,10 +89,10 @@ const ReviewForm = (props) => {
         e.preventDefault()
         setReviewInProgress(true)
         if (artist) {
-            setReview(Object.assign({}, review, {"artist_id": artist.data.id, "score": score}))
+            setReview(Object.assign({}, review, {"user_id": userId.value, "artist_id": artist.data.id, "score": score}))
         }
         if (venue) {
-            setReview(Object.assign({}, review, {"venue_id": venue.data.id, "score": score}))
+            setReview(Object.assign({}, review, {"user_id": userId.value, "venue_id": venue.data.id, "score": score}))
         }
     }
 

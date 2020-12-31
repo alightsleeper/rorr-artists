@@ -32,38 +32,3 @@ venues = Venue.create([
     }
 ])
 
-reviews = Review.create([
-    {
-        title: 'Great band',
-        description: 'I had a lovely time.',
-        score: 5,
-        artist_id: artists.first.id
-    },
-    {
-        title: 'Lousy!',
-        description: 'Weird band, made me uncomfortable.',
-        score: 1,
-        artist_id: artists.last.id     
-    },
-    {
-        title: 'Cool little spot',
-        description: 'Weird bands, a nice venue.',
-        score: 1,
-        venue_id: venues.last.id      
-    }
-])
-
-performances = Performance.create([
-    {
-        date: '2019-03-27 22:00:00',
-        description: 'One night only!',
-        artist_id: artists.first.id,
-        venue_id: venues.first.id
-    },
-    {
-        date: '2014-05-11 22:00:00',
-        description: 'One night only!',
-        artist_id: artists.last.id,
-        venue_id: venues.last.id       
-    }
-])

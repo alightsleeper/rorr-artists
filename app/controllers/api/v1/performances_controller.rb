@@ -52,7 +52,7 @@ module Api
             private
 
             def performance_params
-                params.require(:performance).permit(:description, :date, :artist_id, :venue_id)
+                params.require(:performance).permit(:description, :date, :artist_id, :venue_id, :user_id)
             end
 
         end
