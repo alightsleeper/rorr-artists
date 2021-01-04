@@ -147,9 +147,7 @@ const PerformanceForm = (props) => {
             setPerformanceInProgress(false)
         })
         .catch(err => {
-            console.log(err)
-            errors.push(err)
-            setErrors(errors)
+            setErrors(err.response.data.errors)
         })
     }
 
@@ -159,7 +157,7 @@ const PerformanceForm = (props) => {
                 <FormTitle>Request a Performance:</FormTitle>
                 { errors.length > 0 &&
                     errors.map( (error, index) => {
-                        return (<ErrorDiv key={index}>Poop! {error.message}</ErrorDiv>)
+                        return (<ErrorDiv key={index}>{error.detail}</ErrorDiv>)
                     })
                 }
                 <Field>
