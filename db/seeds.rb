@@ -6,29 +6,18 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-artists = Artist.create([
-    {
-        name: "Tortoise",
-        image_url: "https://maroon-prod.s3.amazonaws.com/media/CACHE/images/photos/2017/01/16/tortoise/efdd7a9acd386b01d84915ac0561900a.jpeg"
-    },
-    {
-        name: "Cheer-Accident",
-        image_url: "https://www.cheer-accident.com/wp-content/uploads/2014/03/CHEER-ACCIDENT-QUARTET.jpg"
-    },
-    {        
-        name: "Shellac",
-        image_url: "https://www.wmse.org/wp-content/uploads/2020/02/600x360-Shellac-2020.png"
-    }
-])
+artists = 20.times {Artist.create(
+    name: (0...10).map { ('a'..'z').to_a[rand(26)] }.join,
+    image_url: "https://via.placeholder.com/150"
+)}
 
-venues = Venue.create([
-    {
-        name: "Hungry Brain",
-        image_url: "https://scontent-ort2-1.xx.fbcdn.net/v/t31.0-8/12764738_10153572230519164_7275033678571519826_o.jpg?_nc_cat=111&ccb=2&_nc_sid=09cbfe&_nc_ohc=aA9Nic-7qgQAX88kKir&_nc_ht=scontent-ort2-1.xx&oh=05b5d1a92df7ca3d7deab7be5ff804d2&oe=5FFA162D"
-    },
-    {        
-        name: "Cafe Mustache",
-        image_url: "https://scontent-ort2-1.xx.fbcdn.net/v/t1.0-9/540307_402209006456728_452039113_n.jpg?_nc_cat=100&ccb=2&_nc_sid=09cbfe&_nc_ohc=dvgQZylUKoYAX_JilZF&_nc_ht=scontent-ort2-1.xx&oh=564e1695b1580e94d582ab5dbacac998&oe=5FF793AF"
-    }
-])
+venues = 20.times {Venue.create(
+    name: (0...10).map { ('a'..'z').to_a[rand(26)] }.join,
+    image_url: "https://via.placeholder.com/150"
+)}
 
+performances = 100.times {Performance.create(
+    artist_id: rand(1..20), 
+    venue_id: rand(1..20), 
+    date: rand(1..365).days.from_now
+)}
