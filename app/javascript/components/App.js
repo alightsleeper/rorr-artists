@@ -19,7 +19,6 @@ const App = () => {
                 <Route exact path="/venues/:id" component={Venue}/>
             </Switch>
         </Router>
- 
     )
 }
 
